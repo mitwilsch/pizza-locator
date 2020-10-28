@@ -1,4 +1,3 @@
 {
-  "watch": ["src/server/"],
-  "ignore": ["src/server/data/*"]
+  "watch": ["src/server"]
 }

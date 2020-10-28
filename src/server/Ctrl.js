@@ -16,4 +16,10 @@ const status = async (req, res) => {
 
   return res.json(data);
 };
-module.exports = { helloWorld, status };
+
+const runScan = async (req, res) => {
+  const data = await Utils.scanAll();
+  return res.json(data);
+};
+
+module.exports = { runScan, helloWorld, status };

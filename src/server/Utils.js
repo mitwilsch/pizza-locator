@@ -5,7 +5,7 @@ const execShellCmd = cmd => {
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
       if (error) {
-        console.warn(error);
+        console.warn('execShellCmd:', error);
       }
       resolve(stdout || stderr);
     });
@@ -76,9 +76,32 @@ const getIP = async () => {
   const ip = await execShellCmd(
     "ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/'"
   );
-
   return ip;
 };
-// ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/'
 
-module.exports = { getStats, getIP };
+const scanIP = async ip => {
+  console.log(`scanning ${ip}`);
+  try {
+    const res = await execShellCmd(`curl -s -m 0.15  ${ip}:8786`);
+
+    return JSON.parse(res);
+  } catch (error) {
+    console.log('error');
+    return null;
+  }
+};
+
+const scanAll = async () => {
+  const range = 121;
+  const ipBase = '192.168.43.';
+  const clients = [];
+  for (let i = 0; i <= range; i++) {
+    const res = await scanIP(ipBase + i);
+    if (res) {
+      clients.push(res);
+    }
+  }
+
+  return clients;
+};
+module.exports = { scanAll, scanIP, getStats, getIP };
