@@ -1,8 +1,14 @@
 const express = require('express');
 const Utils = require('./Utils');
 
-const helloWorld = (req, res) => {
-  return res.json('This is the server');
+const model = {
+  name: 'tablet',
+  ip: null,
+};
+
+const helloWorld = async (req, res) => {
+  model.ip = await Utils.getIP();
+  return res.json(model);
 };
 
 const status = async (req, res) => {

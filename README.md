@@ -10,8 +10,8 @@ For testing, assume 2 devices runnning the client and server in Termux.
 # todo
 - [x] clean up custom logic and routes from old stuff
 - [x]clean up client page
-- [] respond to GET with config file vars
-- [] store ip in config vars
+- [x] respond to GET with config file vars
+- [x] store ip in config vars
 - [] implement port scans
 - [] implement timer on port scans
 - [] implement saving of port IPs, sending GET to fetch config vars

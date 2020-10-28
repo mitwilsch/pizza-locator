@@ -72,4 +72,13 @@ const getStats = async () => {
   return stats;
 };
 
-module.exports = { getStats };
+const getIP = async () => {
+  const ip = await execShellCmd(
+    "ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/'"
+  );
+
+  return ip;
+};
+// ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/'
+
+module.exports = { getStats, getIP };
