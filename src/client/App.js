@@ -59,7 +59,11 @@ const Utils = () => {
 const SearchBox = ({ handler }) => {
   const [text, setText] = useState('');
   const { searchFormat, fetchApi, fakeApi } = Utils();
-
+  const styles = {
+    searchBox: {
+      margin: '5em',
+    },
+  };
   const submitHandler = (text) => {
     handler();
     text = searchFormat(text);
@@ -67,7 +71,7 @@ const SearchBox = ({ handler }) => {
     fetchApi(text).then((res) => handler(res));
   };
   return (
-    <div>
+    <div style={styles.searchBox}>
       <input type="text" onChange={(e) => setText(e.target.value)} />
       <button type="button" onClick={() => submitHandler(text)}>
         Search
@@ -77,24 +81,36 @@ const SearchBox = ({ handler }) => {
 };
 
 const StoreModal = ({ store }) => {
+  const styles = {
+    store: {
+      margin: '5em',
+    },
+  };
   if (store) {
     const { StoreID, AddressDescription } = store;
     return (
-      <div>
+      <div style={styles.store}>
         <p>Store #{StoreID}</p>
         <p>Address: {AddressDescription}</p>
       </div>
     );
   }
 
-  return <div>Waiting...</div>;
+  return <div style={styles.store}>Waiting...</div>;
 };
 const App = () => {
   const [store, setStore] = useState();
   console.log(store);
-
+  const styles = {
+    main: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+  };
   return (
-    <div>
+    <div style={styles.main}>
+      <h1>Domino's Finder</h1>
+      <body>Enter an address and find the nearest store</body>
       <SearchBox handler={setStore} />
       <StoreModal store={store} />
     </div>
