@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 
 const pizzapi = require('pizzapi');
 
-app.get('/', async (req, res) => {
-  const address = '1581 E Main St, El Cajon, CA, 92021';
+app.get('/:address', async (req, res) => {
+  const address = req.params.address.split('+').join(' ');
+  // Address also needs colon-separated fields
+  console.log(address);
+
   pizzapi.Util.findNearbyStores(address, 'Delivery', (data) => {
-    console.log('func', typeof data.result.Stores[0].StoreID);
     res.send(data.result.Stores[0]);
   });
 });
