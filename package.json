@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "serve": "npx http-server dist -p 80"
+    "serve": "npx http-server dist -p 80",
+    "server": "nodemon src/server/index.js"
   },
   "dependencies": {
     "react": "^16.13.1",
