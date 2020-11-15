@@ -12,7 +12,7 @@ For testing, assume 2 devices runnning the client and server in Termux.
 - [x]clean up client page
 - [x] respond to GET with config file vars
 - [x] store ip in config vars
-- [] implement port scans
-- [] implement timer on port scans
+- [x] implement port scans
+- [x] implement timer on port scans
 - [] implement saving of port IPs, sending GET to fetch config vars
 - [] Implement showing saved IPs in client

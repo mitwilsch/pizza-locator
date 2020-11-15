@@ -76,7 +76,7 @@ const getIP = async () => {
   const ip = await execShellCmd(
     "ip addr show wlan0 | grep 'inet ' | awk '{print $2}' | cut -f1 -d'/'"
   );
-  return ip;
+  return ip.replace(/(\n)/gm, '');
 };
 
 const scanIP = async ip => {
@@ -92,7 +92,7 @@ const scanIP = async ip => {
 };
 
 const scanAll = async () => {
-  const range = 121;
+  const range = 24;
   const ipBase = '192.168.43.';
   const clients = [];
   for (let i = 0; i <= range; i++) {
