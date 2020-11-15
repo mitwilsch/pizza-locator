@@ -8,10 +8,14 @@ const port = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const sampleResults = require('./sampleResults.json');
+const pizzapi = require('pizzapi');
 
-app.get('/', function (req, res) {
-  res.send(sampleResults);
+app.get('/', async (req, res) => {
+  const address = '1581 E Main St, El Cajon, CA, 92021';
+  pizzapi.Util.findNearbyStores(address, 'Delivery', (data) => {
+    console.log('func', typeof data.result.Stores[0].StoreID);
+    res.send(data.result.Stores[0]);
+  });
 });
 
 app.listen(port);
