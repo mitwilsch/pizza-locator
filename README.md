@@ -6,3 +6,7 @@ Next steps:
 - work on style
 - add error messages
 - add about page
+
+# pwa
+
+Needs testing, apparently manifest is needed, but testing requires device debugging
