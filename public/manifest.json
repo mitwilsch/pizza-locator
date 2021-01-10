@@ -1,0 +1,9 @@
+{
+    "short_name": "PizzaLocator",
+    "name": "Pizza Locator",
+    "Icons": [
+      
+    ],
+    "start_url": ".",
+    "display": "standalone"
+}
